@@ -349,7 +349,8 @@ connect().then(async () => {
   });
 
   client.once("ready", () => {
-    startUptimeCounter();
+    startUptimeCounter(); 
+    client.user?.setPresence({ activities: [{ name: "With Sho's cat", type: "PLAYING" }] });
   });
 
   client.on(Constants.Events.RATE_LIMIT, (data) => {
@@ -390,10 +391,8 @@ connect().then(async () => {
   }, 100);
   setInterval(() => {
     // FIXME: Debug
-    if (lowestGlobalRemaining < 30) {
-      // tslint:disable-next-line:no-console
-      console.log("[DEBUG] Lowest global remaining in the past 15 seconds:", lowestGlobalRemaining);
-    }
+    // tslint:disable-next-line:no-console
+    console.log("Lowest global remaining in the past 15 seconds:", lowestGlobalRemaining);
     lowestGlobalRemaining = Infinity;
   }, 15000);
 
